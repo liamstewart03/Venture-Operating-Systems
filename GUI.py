@@ -7,48 +7,48 @@ from Car import *
 class GUI:
 
     def __init__(self):
-        #initialize root window
         self.root = tk.Tk()
         self.root.geometry("1000x1000")
         self.root.title("Venture Operating Systems")
-        #create button frame
+
         self.buttonframe = tk.Frame(self.root)
         self.buttonframe.columnconfigure(0, weight=1) 
         self.buttonframe.columnconfigure(1, weight=1)
-        #create and place employee button
+
         self.employee_button = tk.Button(self.buttonframe, text="Employees", font=('Arial', 40), width=1, height=10, command=self.open_employee_window)
         self.employee_button.grid(row=0, column=0, sticky=tk.E+tk.W)
-        #create and place car button
+
         self.car_button = tk.Button(self.buttonframe, text="Cars", font=('Arial', 40), width=1, height=10, command=self.open_car_window)
         self.car_button.grid(row=0, column=1, sticky=tk.E+tk.W)
-        #pack button frame in root
+
         self.buttonframe.pack(pady=10, fill=tk.X)
 
         self.root.mainloop()
 
     def open_employee_window(self):
     
-        #initialize employee window
+
         self.employee_window = tk.Tk()
         self.employee_window.title("Employees")
         self.employee_window.geometry("1000x1000")
-        #create scrollbar and place it in employee window
+
         self.scrollbar = tk.Scrollbar(self.employee_window)
         self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        #create listbox that allows scrolling
+        
         self.employee_list = tk.Listbox(self.employee_window, yscrollcommand = self.scrollbar.set)
         employee_names = ["Kaden Range", "Nathan Miller", "Patrick Koury", "Neil Correia", "Liam Stewart", "Kendal Kelly", "Marco Lawrence", "Anabella Hendrix", "Corinne Hammond", "Elizabeth Drake", "Adyson Day", "Dillan Alexander", "Adison Figueroa", "Angeline Vasquez", "Todd Baldwin", "Makaila Watkins", "Ramiro Perkins"]
         for name in employee_names:
             self.employee_list.insert(tk.END, name)
+        
         self.employee_list.pack(side=tk.TOP, fill=tk.X)
         self.scrollbar.config(command = self.employee_list.yview )
-        #create label for entry
+
         self.label = tk.Label(self.employee_window, text="Enter Employee Name", font=('Arial', 18, 'bold'))
         self.label.pack(anchor='nw')
-        #create entry
+
         self.employee_name_entry = tk.Entry(self.employee_window, font=('Arial', 18))
         self.employee_name_entry.pack(anchor='nw')
-        #create submit button that takes information from entry
+
         self.employee_submit_button = tk.Button(self.employee_window, text="Submit", font=('Arial', 18), command=self.open_employee)
         self.employee_submit_button.pack(anchor='nw')
 
@@ -253,18 +253,12 @@ class GUI:
         self.price_button = tk.Button(self.subcar_window, text="Get Price", font=("Arial", 18), command=self.show_price)
         self.price_button.pack(anchor='nw')
 
-        
-
-        
-        
         self.subcar_window.mainloop()
 
         
     def show_price(self):
-        if self.check_state == 0:
             messagebox.showinfo(title="Car Price", message=self.cars[int(self.number_entry.get()) - 1].price)
-        if self.check_state == 1:
-            messagebox.showinfo(title="Car Price", message=self.cars[int(self.number_entry.get()) - 1].price * .97)
+
 
 
 GUI()

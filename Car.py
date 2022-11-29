@@ -10,5 +10,3 @@ class Car:
         Model: {self.model}
         Price: {self.price}
         """
-
-
